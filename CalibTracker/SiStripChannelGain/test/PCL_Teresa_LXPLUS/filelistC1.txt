@@ -1,0 +1,10 @@
+file:Run2012C/198941/PromptCalibProdSiStripGains.root
+file:Run2012C/198954/PromptCalibProdSiStripGains.root
+file:Run2012C/198955/PromptCalibProdSiStripGains.root
+file:Run2012C/198969/PromptCalibProdSiStripGains.root
+file:Run2012C/199008/PromptCalibProdSiStripGains.root
+file:Run2012C/199011/PromptCalibProdSiStripGains.root
+file:Run2012C/199021/PromptCalibProdSiStripGains.root
+file:Run2012C/199318/PromptCalibProdSiStripGains.root
+file:Run2012C/199319/PromptCalibProdSiStripGains.root
+file:Run2012C/199336/PromptCalibProdSiStripGains.root
