@@ -188,6 +188,7 @@ private:
   unsigned int GOOD;
   unsigned int BAD;
   unsigned int MASKED;
+  
 
   
 
@@ -239,10 +240,12 @@ void SiStripGainFromCalibTree::algoBeginRun(const edm::Run& run, const edm::Even
 {
 
   cout << "algoBeginRun: runnumber = "<<run.run()<<endl;
-
+    
   if(Charge_Vs_Index) cout<<"algoBeginRun: ChargeVsIndex->getTH2F()->GetEntries() = "<<Charge_Vs_Index ->getTH2F()->GetEntries()<<endl;
 
-  if(APVsCollOrdered.size() > 0)return;  //initialize things only for the first run
+  if(APVsCollOrdered.size() > 0 && harvestingMode){
+    return;  //initialize things only for the first run
+  }
 
   cout << "algoBeginRun start" << endl;
   if(!harvestingMode){
@@ -490,7 +493,6 @@ void SiStripGainFromCalibTree::getPeakOfLandau(TH1* InputHisto, double* FitResul
 
   // MPV is parameter 1 (0=constant, 1=MPV, 2=Sigma)
   FitResults[0]         = MyLandau->GetParameter(1);  //MPV
-  //FitResults[0]         = InputHisto->GetMean();  //MPV
   FitResults[1]         = MyLandau->GetParError(1);   //MPV error
   FitResults[2]         = MyLandau->GetParameter(2);  //Width
   FitResults[3]         = MyLandau->GetParError(2);   //Width error
@@ -945,7 +947,7 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
   }
   ERun             = iEvent.id().run();
   NEvent++;
-
+  
   //FROM SHALLOW GAIN
   edm::ESHandle<TrackerGeometry> theTrackerGeometry;         iSetup.get<TrackerDigiGeometryRecord>().get( theTrackerGeometry );  
   edm::ESHandle<SiStripGain> gainHandle;                     iSetup.get<SiStripGainRcd>().get(gainHandle);
@@ -967,6 +969,7 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
 
     
     vector<TrajectoryMeasurement> measurements = traj->measurements();
+    
     for(vector<TrajectoryMeasurement>::const_iterator measurement_it = measurements.begin(); measurement_it!=measurements.end(); measurement_it++){
       TrajectoryStateOnSurface trajState = measurement_it->updatedState();
       if( !trajState.isValid() ) continue;     
@@ -1139,11 +1142,11 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
 	}
 	    
       }//loop on  clusters
-
+      
     }//loop on measurements
-
+    
   }//loop on tracks
-
+  
 }
 
 
