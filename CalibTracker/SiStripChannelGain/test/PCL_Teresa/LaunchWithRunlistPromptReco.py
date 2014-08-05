@@ -36,6 +36,7 @@ for sample in DATASET:
       runs.append(run)
       
    for r in runs:
+      print str(r)
       if str(r) in open('runlistPromptReco.txt').read():
          print str(r)
       else:
@@ -58,6 +59,11 @@ for sample in DATASET:
       config_file=open(''+folder+'/'+str(r)+'/cmsDriver.sh','w')
       config_file.write( initEnv + listFiles + 'cmsDriver.py '+folder+'' +str(r)+ ' --datatier ALCARECO --conditions auto:com10 -s ALCA:PromptCalibProdSiStripGains --eventcontent ALCARECO -n -1 --filein=${var} --fileout file:'+folder+''+str(r)+'_out.root' + '; rm core.*;')
       config_file.close()
+      commands.getstatusoutput('cd '+folder+'/'+str(r))
       print('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + str(r) + ' ' + os.getcwd() + '/'+folder+'/'+str(r)+'/cmsDriver.sh')
-      out = commands.getstatusoutput('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + str(r) + ' ' + os.getcwd() + '/'+folder+'/'+str(r)+'/cmsDriver.sh')
-
+      #out = commands.getstatusoutput('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + str(r) + ' ' + os.getcwd() + '/'+folder+'/'+str(r)+'/cmsDriver.sh')
+      qsubCommand=open('qsubCommand.txt','w')
+      qsubCommand.write('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + str(r) + ' ' + os.getcwd() + '/'+folder+'/'+str(r)+'/cmsDriver.sh')
+      qsubCommand.close()
+      commands.getstatusoutput('cd ../..')
+      
