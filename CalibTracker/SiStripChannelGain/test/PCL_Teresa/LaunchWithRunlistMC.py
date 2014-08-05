@@ -35,15 +35,12 @@ for i in f:
    config_file=open(''+folder+'/'+str(a)+'/cmsDriver.sh','w')
    config_file.write( initEnv + listFiles + 'cmsDriver.py '+folder+'' +str(a)+ ' --no_exec --mc --datatier ALCARECO --conditions START53_V7G::All -s ALCA:PromptCalibProdSiStripGains --eventcontent ALCARECO -n -1 --filein=${var} --fileout file:'+folder+''+str(a)+'_out.root' + ';echo -e "process.pathALCARECOPromptCalibProdSiStripGains.remove(process.ALCARECOCalMinBiasFilterForSiStripGains)\nprocess.ALCARECOCalibrationTracks.src = \'generalTracks\'" >> '+folder+''+str(a)+'_ALCA.py;cmsRun '+folder+''+str(a)+'_ALCA.py;rm core.*;')
    config_file.close()
-   commands.getstatusoutput('cd '+folder+'/'+str(a))
-   print('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + folder + '_' + str(a) + ' ' + os.getcwd() + '/'+folder+'/'+str(a)+'/cmsDriver.sh')
+
+   
    command_file=open(''+folder+'/'+str(a)+'/command.txt','w')
    command_file.write('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + folder + '_' + str(a) + ' ' + os.getcwd() + '/'+folder+'/'+str(a)+'/cmsDriver.sh')
    command_file.close()
+   print('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + folder + '_' + str(a) + ' ' + os.getcwd() + '/'+folder+'/'+str(a)+'/cmsDriver.sh')
    out = commands.getstatusoutput('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + folder + '_' + str(a) + ' ' + os.getcwd() + '/'+folder+'/'+str(a)+'/cmsDriver.sh')
-   qsubCommand=open('qsubCommand.txt','w')
-   qsubCommand.write('qsub -cwd -l h_vmem=8G -m ae -q long.q -N gain' + folder + '_' + str(a) + ' ' + os.getcwd() + '/'+folder+'/'+str(a)+'/cmsDriver.sh')
-   qsubCommand.close()
-   commands.getstatusoutput('cd ../..')
    filelist = []
    a+=1
