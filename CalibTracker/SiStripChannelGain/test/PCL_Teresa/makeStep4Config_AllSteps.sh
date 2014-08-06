@@ -4,7 +4,7 @@ file=${step}
 
 export filelistName=filelist${file}.txt
 export configfileName=step4_ALCAHARVEST_${file}.py
-export outputRootFile=Gains_Tree_${file}.root
+export outputRootFile=Gains_Tree_${file}_CL2.root
 MYVARS='$filelistName:$configfileName:$outputRootFile'
 
 # put this list into the config file
