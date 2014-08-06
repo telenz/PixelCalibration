@@ -82,8 +82,6 @@
 
 #include <ext/hash_map>
 
-
-
 using namespace edm;
 using namespace reco;
 using namespace std;
@@ -250,7 +248,6 @@ void SiStripGainFromCalibTree::algoBeginRun(const edm::Run& run, const edm::Even
   cout << "algoBeginRun start" << endl;
   if(!harvestingMode){
     cout << "   booking start" << endl;
-    cout<<"second occurence"<<endl;
     dbe->setCurrentFolder("AlCaReco/SiStripGains/");
     Charge_Vs_Index           = dbe->book2D("Charge_Vs_Index"          , "Charge_Vs_Index"          , 88625, 0   , 88625,2000,0,4000);
     Charge_Vs_Index_Absolute  = dbe->book2D("Charge_Vs_Index_Absolute" , "Charge_Vs_Index_Absolute" , 88625, 0   , 88625,2000,0,4000);
@@ -275,15 +272,15 @@ void SiStripGainFromCalibTree::algoBeginRun(const edm::Run& run, const edm::Even
   for(unsigned int i=0;i<gainHandle->getNumberOfTags();i++){
     printf("Reccord %i --> Rcd Name = %s    Label Name = %s\n",i,gainHandle->getRcdName(i).c_str(), gainHandle->getLabelName(i).c_str());
   }
- 
+  
   edm::ESHandle<SiStripQuality> SiStripQuality_;
   iSetup.get<SiStripQualityRcd>().get(SiStripQuality_);
-
+  
   edm::ESHandle<SiPixelQuality> SiPixelQuality_;
   iSetup.get<SiPixelQualityRcd>().get("",SiPixelQuality_);
- 
+  
   unsigned int Index=0;
-
+  
     for(unsigned int i=0;i<Det.size();i++){
       DetId  Detid  = Det[i]->geographicalId(); 
       int    SubDet = Detid.subdetId();
