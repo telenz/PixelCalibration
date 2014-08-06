@@ -8,14 +8,15 @@ fileCheck=true
 sizeCheck=true
 zombieCheck=true
 
-submit=false 
+submit=true
 
 echo zombieCheck=$zombieCheck
 echo sizeCheck=$sizeCheck
 echo fileCheck=$fileCheck
 echo
+SCRIPTPATH=`pwd`
 
-find /nfs/dust/cms/user/tlenz/PixelCalibrationCode/CMSSW_5_3_15/src/CalibTracker/SiStripChannelGain/test/PCL_Teresa/Run2012B* -name "cmsDriver.sh" -type f > allJobs.txt
+find $SCRIPTPATH/MC2012* -name "cmsDriver.sh" -type f > allJobs.txt
 
 while read line 
   do
@@ -23,6 +24,9 @@ while read line
   aux=${#line}
   path=${line:0:aux-13}
   runNumber=${line:aux-19:6}
+  # only for MC 
+  runNumber=$(echo $runNumber | cut -f2 -d"/")
+   
 
 #  echo
 # echo "line=" $line
@@ -37,7 +41,7 @@ while read line
 	  echo $path
 	  if [ "$submit" == true ]; then
 	      echo submit
-	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain{runNumber} $path/cmsDriver.sh
+	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain${runNumber} $path/cmsDriver.sh
 	  fi
 	  continue
       fi
@@ -54,7 +58,7 @@ while read line
 	  if [ "$submit" == true ]; then
 	      echo submit
 	      #rm $path/PromptCalibProdSiStripGains.root
-	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain{runNumber} $path/cmsDriver.sh
+	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain${runNumber} $path/cmsDriver.sh
 	  fi
 	  continue
       fi
@@ -72,7 +76,7 @@ while read line
 	  if [ "$submit" == true ]; then
 	      echo submit
 	      #rm $path/PromptCalibProdSiStripGains.root
-	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain{runNumber} $path/cmsDriver.sh
+	      qsub -cwd -l h_vmem=10G -m ae -q long.q -N gain${runNumber} $path/cmsDriver.sh
 	  fi
       fi
   fi
