@@ -49,6 +49,7 @@ file:Run2012D/206596/PromptCalibProdSiStripGains.root
 file:Run2012D/206598/PromptCalibProdSiStripGains.root
 file:Run2012D/206605/PromptCalibProdSiStripGains.root
 file:Run2012D/206744/PromptCalibProdSiStripGains.root
+file:Run2012D/206745/PromptCalibProdSiStripGains.root
 file:Run2012D/206752/PromptCalibProdSiStripGains.root
 file:Run2012D/206753/PromptCalibProdSiStripGains.root
 file:Run2012D/206754/PromptCalibProdSiStripGains.root
@@ -70,6 +71,7 @@ file:Run2012D/207219/PromptCalibProdSiStripGains.root
 file:Run2012D/207220/PromptCalibProdSiStripGains.root
 file:Run2012D/207221/PromptCalibProdSiStripGains.root
 file:Run2012D/207222/PromptCalibProdSiStripGains.root
+file:Run2012D/207231/PromptCalibProdSiStripGains.root
 file:Run2012D/207233/PromptCalibProdSiStripGains.root
 file:Run2012D/207269/PromptCalibProdSiStripGains.root
 file:Run2012D/207273/PromptCalibProdSiStripGains.root
@@ -81,6 +83,7 @@ file:Run2012D/207371/PromptCalibProdSiStripGains.root
 file:Run2012D/207372/PromptCalibProdSiStripGains.root
 file:Run2012D/207397/PromptCalibProdSiStripGains.root
 file:Run2012D/207398/PromptCalibProdSiStripGains.root
+file:Run2012D/207454/PromptCalibProdSiStripGains.root
 file:Run2012D/207468/PromptCalibProdSiStripGains.root
 file:Run2012D/207469/PromptCalibProdSiStripGains.root
 file:Run2012D/207477/PromptCalibProdSiStripGains.root
@@ -103,6 +106,7 @@ file:Run2012D/207886/PromptCalibProdSiStripGains.root
 file:Run2012D/207887/PromptCalibProdSiStripGains.root
 file:Run2012D/207889/PromptCalibProdSiStripGains.root
 file:Run2012D/207898/PromptCalibProdSiStripGains.root
+file:Run2012D/207905/PromptCalibProdSiStripGains.root
 file:Run2012D/207920/PromptCalibProdSiStripGains.root
 file:Run2012D/207921/PromptCalibProdSiStripGains.root
 file:Run2012D/207922/PromptCalibProdSiStripGains.root
