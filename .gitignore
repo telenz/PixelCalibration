@@ -1,2 +1,4 @@
 FWCore
-*/*/python*.pyc
+**/*/python/*.pyc
+**/*~
+**/__init__.py
