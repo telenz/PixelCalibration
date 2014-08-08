@@ -1,1 +1,0 @@
-cmsDriver.py step3test --datatier ALCARECO --conditions auto:com10 -s ALCA:PromptCalibProdSiStripGains --eventcontent ALCARECO -n 100 --dasquery='file dataset=/MinimumBias/Run2012C-SiStripCalMinBias-v2/ALCARECO run=200190'  --fileout file:step3.root --no_exec
