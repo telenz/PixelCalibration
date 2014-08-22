@@ -19,7 +19,7 @@ DATASETD="/MinimumBias/Run2012D-SiStripCalMinBias-v1/ALCARECO"
 DATASET.append(DATASETD)
 print DATASET
 
-f = open('runlistPromptReco2.txt', 'w')
+f = open('runlistPromptReco.txt', 'w')
 
 for sample in DATASET:
    results = commands.getstatusoutput('python2.6 das_client.py --query="run dataset='+sample+' | grep run.run_number" --limit=100000')[1].splitlines()
