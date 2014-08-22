@@ -9,7 +9,7 @@ source submitCrashedJobsAgain.sh
 
 # for step4:
 submitToBatch.sh #(calls: source makeStep4Config\_AllSteps.sh)
-
+source makeAllFits.sh
 
 #####
 # For MC
