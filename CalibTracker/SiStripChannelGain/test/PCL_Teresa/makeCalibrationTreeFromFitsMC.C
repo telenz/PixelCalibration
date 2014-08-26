@@ -13,7 +13,7 @@
 //const Int_t nOfStripModules = 15148;
 const Int_t nOfPixelModules   = 1440;
 const Int_t nOfModules        = 16588;
-const double globalPixelMC    = 3.50843; // <-modulewise// just one factor->3.36787;
+const double globalPixelMC    = 3.50843; // <- modulewise, 1 factor:3.48222;
 const double globalStrip      = 3.30271;
 
 typedef struct { 
