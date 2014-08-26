@@ -9,4 +9,14 @@ FWCore
 **/Run2012*/
 **/MC2012/
 **/DQM_*.root
-**/Gains_Tree_*.root
+**/Gains_Tree*.root
+**/makeStep4Config_AB.sh
+**/makeStep4Config_C1.sh
+**/makeStep4Config_C2.sh
+**/makeStep4Config_D1.sh
+**/makeStep4Config_D2.sh
+**/step4_ALCAHARVEST_AB.py
+**/step4_ALCAHARVEST_C1.py
+**/step4_ALCAHARVEST_C2.py
+**/step4_ALCAHARVEST_D1.py
+**/step4_ALCAHARVEST_D2.py
