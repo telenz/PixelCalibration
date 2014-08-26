@@ -5,10 +5,11 @@ import shutil
 import commands
 
 for dirname in os.walk('MC2012'):
+    if dirname[0].endswith("MC2012"):
+        continue
     print dirname[0]
     runnumber=dirname[0][7:]
     print runnumber
-    #print dirname[0]+'/step4_ALCAHARVEST_MC.py'
     shutil.copy2('step4_ALCAHARVEST_MC.py',dirname[0]+'/step4_ALCAHARVEST_MC.py')
 
     initEnv='#!/bin/sh \n'
