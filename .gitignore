@@ -4,4 +4,7 @@ FWCore
 **/__init__.py
 **/gain*.e*
 **/gain*.o*
-**/Run2012*
+**/step*.e*
+**/step*.o*
+**/Run2012*/
+**/MC2012/
