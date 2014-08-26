@@ -12,6 +12,6 @@ for i in "${steps[@]}"
   do
   echo $i
   cat makeStep4Config_AllSteps.sh | sed -e "s/\${step}/${i}/" > makeStep4Config_${i}.sh
-  #qsub -cwd -l h_vmem=10G -m ae -q long.q -N stepAB ${SCRIPTPATH}/makeStep4Config_${i}.sh
+  qsub -cwd -l h_vmem=10G -m ae -q long.q -N step${i} ${SCRIPTPATH}/makeStep4Config_${i}.sh
 done
 
