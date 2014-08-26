@@ -2,3 +2,6 @@ FWCore
 **/*/python/*.pyc
 **/*~
 **/__init__.py
+**/gain*.e*
+**/gain*.o*
+**/Run2012*
