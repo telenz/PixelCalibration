@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import commands
 
 for dirname in os.walk('MC2012'):
     print dirname[0]
