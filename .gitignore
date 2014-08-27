@@ -20,3 +20,8 @@ FWCore
 **/step4_ALCAHARVEST_C2.py
 **/step4_ALCAHARVEST_D1.py
 **/step4_ALCAHARVEST_D2.py
+**/error_*.txt
+**/output*.txt
+**/fits/
+**/*_C.d
+**/*_C.so
