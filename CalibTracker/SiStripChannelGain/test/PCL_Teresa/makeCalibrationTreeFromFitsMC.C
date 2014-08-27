@@ -70,7 +70,7 @@ int makeCalibrationTree()
 
   // Read input tree
   TChain* chain = new TChain("PixelGain");
-  chain->Add("PixelGain_mc.root");
+  chain->Add("PixelGain_MC.root");
 
   UInt_t   detid[nOfPixelModules];
   UChar_t  subdet[nOfPixelModules];
@@ -106,7 +106,7 @@ int makeCalibrationTree()
 
   // Read input tree
   TChain* chainStrip = new TChain("SiStripCalib/APVGain;2");
-  chainStrip->Add("input/MC7TeVGains.root");
+  chainStrip->Add("MC7TeVGains.root");
   
   UInt_t   detidStrip;
   UChar_t  apvidStrip;
