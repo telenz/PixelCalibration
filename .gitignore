@@ -25,3 +25,4 @@ FWCore
 **/fits/
 **/*_C.d
 **/*_C.so
+**/PixelGain_*.root
