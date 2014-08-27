@@ -11,6 +11,6 @@ source code needed for calculating calibration factors
 	cd src
 	#git checkout tags/T_PIXCALIB_0
 	cmsenv
-	git cms-cvs-history import CMSSW_5_3_11 FWCore/Version
+	#git cms-cvs-history import CMSSW_5_3_11 FWCore/Version
 	scram b -j24
 	#end
