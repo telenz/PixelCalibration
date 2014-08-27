@@ -104,7 +104,7 @@ int makeCalibrationTree()
 
     // Read input tree
     TChain* chainStrip = new TChain("alcaSiStripGainsHarvester/APVGain");
-    chainStrip->Add("input/Gains_Tree_AB_CL2.root");
+    chainStrip->Add("Gains_Tree_AB_CL2_New.root");
 
     UInt_t   detidStrip;
     UChar_t  apvidStrip;
