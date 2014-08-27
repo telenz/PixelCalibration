@@ -40,7 +40,7 @@ int makeCalibrationTree()
   int runRangeStart = 0;
   int runRangeEnd   = 30000000;
 
-  TFile f("MC8TeVGains_New.root","recreate");
+  TFile f("MC8TeVGains.root","recreate");
   TDirectory *dir = f.mkdir("SiStripCalib");
   dir->cd();
   TTree t2("APVGain","a Tree with Pixel Calibration Factors");
