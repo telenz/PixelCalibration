@@ -57,15 +57,14 @@ int makeFitsForCalibration(TString calibStep="mc")
   TH2F *Charge_Vs_Index;
 
 
-  TFile *_file0 = TFile::Open("input/DQM_" + calibStep + ".root");
+  TFile *_file0 = TFile::Open("DQM_" + calibStep + ".root");
 
-  if(calibStep.Contains("mc")) _file0->GetObject("DQMData/Run 1/AlCaReco/Run summary/SiStripGains/Charge_Vs_Index",Charge_Vs_Index);
-  else  _file0->GetObject("Charge_Vs_Index",Charge_Vs_Index);
+  _file0->GetObject("Charge_Vs_Index",Charge_Vs_Index);
   
   
   TChain* chain = new TChain("alcaSiStripGainsHarvester/APVGain");
   // arbitrary just for detid and subdet and index
-  chain->Add("input/Gains_Tree_C1_CL2.root");
+  chain->Add("Gains_Tree_C1_CL2_New.root");
   chain->SetBranchAddress("Index",&index);
   chain->SetBranchAddress("DetId",&detid);
   chain->SetBranchAddress("SubDet",&subdet);
