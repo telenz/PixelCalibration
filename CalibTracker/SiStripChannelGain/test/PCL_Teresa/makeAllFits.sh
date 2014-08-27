@@ -1,9 +1,9 @@
 #!bin/bash
 
-steps=("AB" "C1" "C2" "D1" "D2" "mc")
+steps=("AB" "C1" "C2" "D1" "D2" "MC")
+
 
 mkdir fits
-
 
 root -b -l <<EOF
 .L makeFitsForCalibration.C+
@@ -16,8 +16,9 @@ do
   mkdir fits/${i}
   root -l -b -q makeFitsForCalibration.C+'("'${i}'")' 1> output_${i}.txt 2>error_f_${i}.txt &
 done
-rm makFitsForCalibration.C~
-rm makeFitsForCalibration_C.*
+
+rm makeFitsForCalibration.C~
+
 
 
 
