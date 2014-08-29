@@ -96,7 +96,7 @@ TF1 *langaufit(TH1F *his, Double_t *fitrange, Double_t *startvalues)
    //   ChiSqr          returns the chi square
    //   NDF             returns ndf
 
-   Int_t i;
+   // Int_t i;
    Char_t FunName[100];
 
    sprintf(FunName,"Fitfcn_%s",his->GetName());
