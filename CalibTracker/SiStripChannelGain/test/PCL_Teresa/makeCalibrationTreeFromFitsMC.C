@@ -35,8 +35,6 @@ typedef struct {
 int makeCalibrationTree()
 {
 
-  TString Cstep[1];
-
   int runRangeStart = 0;
   int runRangeEnd   = 30000000;
 
