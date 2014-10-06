@@ -14,7 +14,7 @@
 const Int_t nOfPixelModules   = 1440;
 const Int_t nOfModules        = 16588;
 const double globalPixelData  = 3.5090;
-const double globalStrip      = 3.3027;
+const double globalStrip      = 3.30271;
 
 typedef struct { 
 
