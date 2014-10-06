@@ -14,7 +14,7 @@
 const Int_t nOfPixelModules   = 1440;
 const Int_t nOfModules        = 16588;
 const double globalPixelData  = 3.5090;
-const double globalStrip      = 3.30271;
+const double globalStrip      = 3.3027;
 
 typedef struct { 
 
@@ -139,7 +139,7 @@ int makeCalibrationTree()
 	  step.DetId[idx]                 = detid[j];
 	  step.SubDet[idx]                = subdet[j];
 	  step.APVId[idx]                 = 0;
-	  step.Gain[idx]                  = gain[j]*3.50904/3.32707;
+	  step.Gain[idx]                  = gain[j]*globalPixelData/globalStrip;
 	  step.GainWoGlobalScaling[idx]   = gain[j];
 	  step.FitWidth[idx]              = width[j];
 	  step.Index[idx]                 = idx;
