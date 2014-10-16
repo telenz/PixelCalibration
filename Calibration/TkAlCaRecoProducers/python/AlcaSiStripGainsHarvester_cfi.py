@@ -38,6 +38,6 @@ alcaSiStripGainsHarvester.CalibrationLevel    = cms.untracked.int32(2) # 0==APV,
 
 # THIS is the crucial parameter to use this in harvesting mode                                  
 alcaSiStripGainsHarvester.harvestingMode      = cms.untracked.bool(True)
-#alcaSiStripGainsHarvester.UseCalibration      = cms.untracked.bool(False)
-#alcaSiStripGainsHarvester.calibrationPath     = cms.untracked.string("/afs/cern.ch/user/t/telenz/work/PixelCalibration/CMSSW_5_3_15/src/CalibTracker/SiStripChannelGain/test/PCL_Teresa/Gains_Tree_C1_CL2.root")
+#alcaSiStripGainsHarvester.UseCalibration     = cms.untracked.bool(True)
+#alcaSiStripGainsHarvester.calibrationPath    = cms.untracked.string("/afs/cern.ch/user/t/telenz/work/PixelCalibration/CMSSW_5_3_15/src/CalibTracker/SiStripChannelGain/test/PCL_Teresa/Gains_Tree_C1_CL2.root")
 
