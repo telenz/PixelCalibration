@@ -16,7 +16,7 @@ echo fileCheck=$fileCheck
 echo
 SCRIPTPATH=`pwd`
 
-find $SCRIPTPATH/MC2012* -name "cmsDriver.sh" -type f > allJobs.txt
+find $SCRIPTPATH/MC2012 -name "cmsDriver.sh" -type f > allJobs.txt
 
 while read line 
   do
