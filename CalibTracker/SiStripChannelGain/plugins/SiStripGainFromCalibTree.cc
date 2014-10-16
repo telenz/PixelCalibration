@@ -116,6 +116,9 @@ struct stAPVGain{
   bool         isMasked;
 };
 
+
+TH3F *discrim_template;
+
 class SiStripGainFromCalibTree : public ConditionDBWriter<SiStripApvGain> {
 public:
   explicit SiStripGainFromCalibTree(const edm::ParameterSet&);
@@ -240,6 +243,8 @@ void SiStripGainFromCalibTree::algoBeginRun(const edm::Run& run, const edm::Even
   cout << "algoBeginRun: runnumber = "<<run.run()<<endl;
     
   if(Charge_Vs_Index) cout<<"algoBeginRun: ChargeVsIndex->getTH2F()->GetEntries() = "<<Charge_Vs_Index ->getTH2F()->GetEntries()<<endl;
+
+  if(!discrim_template) discrim_template = new TH3F("Charge_Vs_Path","Charge_Vs_Path",1,10.,100000.,28,0.2,1.6,400,0.,4000.);
 
   if(APVsCollOrdered.size() > 0 && harvestingMode){
     return;  //initialize things only for the first run
@@ -454,6 +459,10 @@ void
 SiStripGainFromCalibTree::algoEndJob() {
   
   cout<<"algoEndJob()"<<endl;
+
+  TFile t("Discrim_Template_pixel_2012.root","recreate");
+  discrim_template->Write();
+  t.Close();
 
   // Change Maybe here the "PCL" -> talk to Loic ???????
   if(AlgoMode == "PCL" && !harvestingMode)return;//nothing to do in that case
@@ -907,25 +916,30 @@ void SiStripGainFromCalibTree::MakeCalibrationMap(){
 
   if(!useCalibration)return;
 
-  TChain* t1 = new TChain("alcaSiStripGainsHarvester/APVGain");
+  TChain* t1 = new TChain("PixelGain");
   t1->Add(m_calibrationPath.c_str());
 
-  unsigned int  tree_DetId;
-  unsigned char tree_APVId;
-  double        tree_Gain;
+  unsigned int  tree_DetId[1440];
+  double        tree_Gain[1440];
 
-  t1->SetBranchAddress("DetId"             ,&tree_DetId      );
-  t1->SetBranchAddress("APVId"             ,&tree_APVId      );
-  t1->SetBranchAddress("Gain"              ,&tree_Gain       );
+  t1->SetBranchAddress("DetId"             ,tree_DetId      );
+  t1->SetBranchAddress("Gain"              ,tree_Gain       );
 
+  cout<<"t1->GetEntries() = "<<t1->GetEntries()<<endl;
   for (unsigned int ientry = 0; ientry < t1->GetEntries(); ientry++) {
     t1->GetEntry(ientry);
-    stAPVGain* APV = APVsColl[(tree_DetId<<4) | (unsigned int)tree_APVId];
-    //cout<<"tree_DetId = "<<tree_DetId<<endl;
-    //cout<<"tree_APVId = "<<(int) tree_APVId<<endl;
-    //cout<<"tree_Gain = "<<tree_Gain<<endl;
-    APV->CalibGain = tree_Gain;
+
+    for (unsigned int i = 0; i < 1440; i++) {
+      for(unsigned int j=0;j<2;j++){
+	for(unsigned int k=0;k<8;k++){
+	  stAPVGain* APV = APVsColl[(tree_DetId[i]<<4) | (j<<3 | k)];
+	  if(!APV) continue;
+	  APV->CalibGain = tree_Gain[i];
+	}
+      }
+    }
   }
+
 }
 
 void
@@ -1090,7 +1104,7 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
 	  int StripCharge = 0;
 	  for(unsigned int s=0;s<amplsSize;s++){
 	    if(sistripmatchedhit || sistripsimplehit || sistripsimple1dhit) StripCharge =  AmplsStrip[s];
-	    else if(sipixelhit)                                             StripCharge =  AmplsPixel[s]; 
+	    else if(sipixelhit)	                                            StripCharge =  AmplsPixel[s]; 
 	    if(useCalibration && !FirstSetOfConstants){ StripCharge=(int)(StripCharge*(APV->PreviousGain/APV->CalibGain));
 	    }else if(useCalibration){                   StripCharge=(int)(StripCharge/APV->CalibGain);
 	    }else if(!FirstSetOfConstants){             StripCharge=(int)(StripCharge*APV->PreviousGain);}
@@ -1109,7 +1123,7 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
 	}else{
 	  Charge = charge;
 	}
-	    
+
 	//printf("ChargeDifference = %i Vs %i with Gain = %f\n",(*charge)[i],Charge,APV->CalibGain);
 
 	double ClusterChargeOverPath   =  ( (double) Charge )/Path ;
@@ -1119,6 +1133,8 @@ SiStripGainFromCalibTree::algoAnalyze(const edm::Event& iEvent, const edm::Event
 	Charge_Vs_Index_Absolute->Fill(APV->Index,Charge);   
 	Charge_Vs_Index         ->Fill(APV->Index,ClusterChargeOverPath);
 
+
+	if(sipixelhit) discrim_template->Fill(50. , Path, ClusterChargeOverPath);
 	    
 	if(APV->SubDet==StripSubdetector::TIB){ Charge_Vs_PathlengthTIB  ->Fill(Path,Charge);
 	}else if(APV->SubDet==StripSubdetector::TOB){ Charge_Vs_PathlengthTOB  ->Fill(Path,Charge);
