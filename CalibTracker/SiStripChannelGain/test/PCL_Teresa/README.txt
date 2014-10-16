@@ -28,3 +28,31 @@ source makeAllFits.sh                     # make all Fits
 makeCalibrationTreeFromFitsMC.C           # make Calibration Tree for MC
 makeCalibrationTreeFromFitsData.C         # make Calibration Tree for Data
 #####
+
+
+#### To make discriminator template #####
+
+# For Data (run only ober A+B change everthing according to that):
+python mkListWithRunsWithNonZeroEntries.py
+python LaunchWithRunlistPromptReco.py (!!! Be aware: you need to set useCalibration to True and you need to give the right calibration path for data in ALCARECOPromptCalibProdSiStripGains_cff.py !!!)
+source submitCrashedJobsAgain.sh
+
+# For MC:
+python mkFileListMC.py
+python LaunchWithRunlistMC.py (!!! Be aware: you need to set useCalibration to True and you need to give the right calibration path for MC in ALCARECOPromptCalibProdSiStripGains_cff.py !!!)
+source submitCrashedJobsAgain.sh
+
+
+#### Some explanation what the relevant files are for step3 and step4 ####
+
+step3:
+= process.pathALCARECOPromptCalibProdSiStripGains
+= seqALCARECOPromptCalibProdSiStripGains
+-> Sequence defined in 
+  Calibration/TkAlCaRecoProducers/python/ALCARECOPromptCalibProdSiStripGains_cff.py
+
+step4:
+= process.ALCAHARVESTSiStripGains
+= cms.Sequence(EDMtoMEConvertSiStripGains + alcaSiStripGainsHarvester)
+-> alcaSiStripGainsHarvester defined in:
+  Calibration/TkAlCaRecoProducers/python/AlcaSiStripGainsHarvester_cfi.py
