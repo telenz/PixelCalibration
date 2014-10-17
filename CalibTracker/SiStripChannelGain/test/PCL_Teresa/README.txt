@@ -36,11 +36,13 @@ makeCalibrationTreeFromFitsData.C         # make Calibration Tree for Data
 python mkListWithRunsWithNonZeroEntries.py
 python LaunchWithRunlistPromptReco.py (!!! Be aware: you need to set useCalibration to True and you need to give the right calibration path for data in ALCARECOPromptCalibProdSiStripGains_cff.py !!!)
 source submitCrashedJobsAgain.sh
+hadd Discrim_template_pixel_data_2012.root Run2012*/*/Discrim_*.root
 
 # For MC:
 python mkFileListMC.py
 python LaunchWithRunlistMC.py (!!! Be aware: you need to set useCalibration to True and you need to give the right calibration path for MC in ALCARECOPromptCalibProdSiStripGains_cff.py !!!)
 source submitCrashedJobsAgain.sh
+hadd Discrim_template_pixel_mc_2012.root MC2012/*/Discrim_*.root
 
 
 #### Some explanation what the relevant files are for step3 and step4 ####
